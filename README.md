@@ -19,11 +19,11 @@
 
 `npm install`
 
-※mongooseのversionは5系を使用しています。6系以上のversionだとこのコードでは正常に動作しません。
+※mongoose の version は 5 系を使用しています。6 系以上の version だとこのコードでは正常に動作しません。
 
-## MongoDBのセットアップ
+## MongoDB のセットアップ
 
-MongoDBが動作していることを確認してください。MongoDB Atlasを使用する場合は、接続URIを`app.js`に設定する必要があります。
+MongoDB が動作していることを確認してください。MongoDB Atlas を使用する場合は、接続 URI を`app.js`に設定する必要があります。
 
 ## データベースのシード
 
@@ -44,6 +44,6 @@ MongoDBが動作していることを確認してください。MongoDB Atlasを
 
 ## トラブルシューティング
 
-- MongoDB接続エラー: MongoDBが正しく起動しているか確認してください。
+- MongoDB 接続エラー: MongoDB が正しく起動しているか確認してください。
 - 依存関係エラー: `npm install`で依存関係が正しくインストールされているか確認してください。
 - 起動エラー: `node app.js`または`nodemon app.js`でアプリケーションが正常に起動しない場合、エラーメッセージを確認してください。
