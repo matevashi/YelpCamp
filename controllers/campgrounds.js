@@ -26,7 +26,6 @@ module.exports.showCampground = async (req, res) => {
 };
 
 module.exports.createCampground = async (req, res) => {
-  // if (!req.body.campground) throw new ExpressError("不正なキャンプ場のデータです", 400)
   const campground = new Campground(req.body.campground);
   campground.author = req.user._id;
   await campground.save();
