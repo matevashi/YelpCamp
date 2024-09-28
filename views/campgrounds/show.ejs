@@ -1,4 +1,6 @@
 <% layout("layouts/boilerplate") %>
+<link rel="stylesheet" href="/stylesheets/stars.css">
+
 <div class="row">
   <div class="col-6">
     <div class="card mb-3">
@@ -29,9 +31,13 @@
     <% if(currentUser) { %>
     <h2>レビュー</h2>
     <form action="/campgrounds/<%= campground._id %>/reviews" method="POST" class="mb-3 validated-form" novalidate>
-      <div class="mb-3">
-        <label class="form-label" for="rating">評価</label>
-        <input class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating">
+      <div>
+        <fieldset class="starability-basic">
+          <% for (let i = 1; i <= 5; i++) { %>
+          <input type="radio" id="first-rate<%= i %>" name="review[rating]" value="<%= i %>" <%= i === 1 ? "checked" : "" %> />
+          <label for="first-rate<%= i %>" title="<%= i %>">評価<%= i %></label>
+          <% } %>
+        </fieldset>
       </div>
       <div class="mb-3">
         <label class="form-label" for="body">コメント</label>
@@ -44,8 +50,10 @@
     <% for (let review of campground.reviews) { %>
       <div class="card mb-3">
         <div class="card-body">
-          <h5 class="card-title">評価：<%= review.rating %></h5>
-          <h6 class="card-subtitle mb-2 text-muted"><%= review.author.username %></h6>
+          <h5 class="card-title"><%= review.author.username %></h5>
+          <p class="starability-result" data-rating="<%= review.rating %>">
+            評価: <%= review.rating %>
+          </p>
           <p class="card-text">コメント：<%= review.body %></p>
           <% if(currentUser && review.author.equals(currentUser._id)) { %>
           <form action="/campgrounds/<%= campground._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
