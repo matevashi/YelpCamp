@@ -1,21 +1,24 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
-const users = require("../controllers/users");
+const usersController = require("../controllers/users");
 
-router.route("/register").get(users.renderRegister).post(users.register);
+router
+  .route("/register")
+  .get(usersController.renderRegister)
+  .post(usersController.register);
 
 router
   .route("/login")
-  .get(users.renderLogin)
+  .get(usersController.renderLogin)
   .post(
     passport.authenticate("local", {
       failureFlash: true,
       failureRedirect: "/login",
     }),
-    users.login
+    usersController.login,
   );
 
-router.get("/logout", users.logout);
+router.get("/logout", usersController.logout);
 
 module.exports = router;
